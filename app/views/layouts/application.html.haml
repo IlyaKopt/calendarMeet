@@ -10,4 +10,37 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = yield
+    %nav.navbar-inverse
+      .navbar-header
+        %button.navbar-toggle.collapsed{ aria: { expanded: 'false' }, data: { target: '#bs-navbar-collapse-1', toggle: 'collapse' }, type: 'button' }
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to 'Calendar meeting system', root_path, class: 'navbar-brand'
+      #bs-navbar-collapse-1.collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          %li
+            = link_to 'Home', root_path
+        %ul.nav.navbar-nav.navbar-right
+          - if user_signed_in?
+            %li
+              = link_to user_path(current_user) do
+                %i.glyphicon.glyphicon-user
+                = current_user.email
+            %li
+              = link_to destroy_user_session_path do
+                %i.glyphicon.glyphicon-off
+                = 'Logout'
+          - else
+            %li
+              = link_to new_user_session_path do
+                = 'Sign in'
+            %li
+              = link_to new_user_registration_path do
+                = 'Sign up'
+    .container-fluid
+      .row{ style: 'padding-top: 100px;' }
+        .col-sm-4.col-sm-offset-4
+          = flash[:notice]
+          = yield
