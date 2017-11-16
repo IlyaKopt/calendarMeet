@@ -25,4 +25,3 @@
 /.ruby-gemset
 /.env
 .idea/
-/config/secrets.yml

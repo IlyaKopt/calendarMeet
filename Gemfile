@@ -19,6 +19,7 @@ gem 'devise'
 gem 'haml-rails', '~> 0.9'
 gem 'haml', '5.0.0.beta.2'
 gem 'dotenv-rails'
+gem 'google-api-client', require: 'google/apis/calendar_v3'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -22,10 +22,12 @@
         %ul.nav.navbar-nav
           %li
             = link_to 'Home', root_path
+          %li
+            = link_to 'Calendars', calendars_path
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             %li
-              = link_to user_path(current_user) do
+              = link_to users_path() do
                 %i.glyphicon.glyphicon-user
                 = current_user.email
             %li
