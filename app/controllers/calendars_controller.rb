@@ -43,7 +43,7 @@ class CalendarsController < ApplicationController
           authorization_uri: 'https://accounts.google.com/o/oauth2/auth',
           token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
           scope: Google::Apis::CalendarV3::AUTH_CALENDAR,
-          redirect_uri: ENV['RACK_ENV'] == 'production' ? 'https://desolate-beach-43675.herokuapp.com/' : 'http://localhost:3000/callback'
+          redirect_uri: ENV['RACK_ENV'] == 'production' ? 'https://desolate-beach-43675.herokuapp.com/callback' : 'http://localhost:3000/callback'
       }
     end
 end
