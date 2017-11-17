@@ -1,6 +1,11 @@
+%h4= "Event list for current user <strong>#{current_user.email}</strong>".html_safe
 %ul
 - @event_list.items.each do |event|
   - if event.summary.present?
+    %li
+      %strong= 'Event location is:'
+      #{event.location}
+    %hr
     %li
       %strong= 'Start date:'
       #{event.start.date_time.strftime('%F %H:%M')}
@@ -8,9 +13,6 @@
       %strong= 'End date:'
       #{event.end.date_time.strftime('%F %H:%M')}
     %hr
-    %li
-      %strong= 'Event location is:'
-      #{event.location}
     %li
       %strong= 'People who are attendees:'
     %ul
@@ -22,3 +24,4 @@
         %li
           %strong= a.response_status
         %hr
+  %hr

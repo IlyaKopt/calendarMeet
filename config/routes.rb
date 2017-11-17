@@ -5,9 +5,7 @@ Rails.application.routes.draw do
 
   get '/redirect', to: 'calendars#redirect', as: 'redirect'
   get '/callback', to: 'calendars#callback', as: 'callback'
-  get '/calendars', to: 'calendars#calendars', as: 'calendars'
-  get '/events/:calendar_id', to: 'calendars#events', as: 'events', calendar_id: /[^\/]+/
+  get '/events', to: 'calendars#events', as: 'events'
 
-  root 'calendars#calendars'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'home#index'
 end

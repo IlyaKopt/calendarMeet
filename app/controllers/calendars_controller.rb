@@ -10,23 +10,9 @@ class CalendarsController < ApplicationController
     response = @client.fetch_access_token!
     session[:authorization] = response
 
-    redirect_to  calendars_url
+    redirect_to  events_url
   end
 
-  def calendars
-    @client.update!(session[:authorization])
-
-    service = Google::Apis::CalendarV3::CalendarService.new
-    service.authorization = @client
-
-    @calendar_list = service.list_calendar_lists
-  rescue Google::Apis::AuthorizationError
-    response = @client.refresh!
-
-    session[:authorization] = session[:authorization].merge(response)
-
-    retry
-  end
 
   def events
     @client.update!(session[:authorization])
@@ -34,7 +20,8 @@ class CalendarsController < ApplicationController
     service = Google::Apis::CalendarV3::CalendarService.new
     service.authorization = @client
 
-    @event_list = service.list_events(params[:calendar_id])
+    @owner_calendar = service.list_calendar_lists.items.select{ |calendar| calendar.access_role == 'owner' }.first
+    @event_list = service.list_events(@owner_calendar.id)
   rescue Google::Apis::AuthorizationError
     response = @client.refresh!
 

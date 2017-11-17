@@ -21,9 +21,7 @@
       #bs-navbar-collapse-1.collapse.navbar-collapse
         %ul.nav.navbar-nav
           %li
-            = link_to 'Home', root_path
-          %li
-            = link_to 'Calendars', calendars_path
+            = link_to 'Owner Events', events_path
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             %li
@@ -31,7 +29,7 @@
                 %i.glyphicon.glyphicon-user
                 = current_user.email
             %li
-              = link_to destroy_user_session_path do
+              = link_to destroy_user_session_path, method: :delete do
                 %i.glyphicon.glyphicon-off
                 = 'Logout'
           - else
@@ -43,6 +41,6 @@
                 = 'Sign up'
     .container-fluid
       .row{ style: 'padding-top: 100px;' }
-        .col-sm-6.col-sm-offset-2
+        .col-sm-4.col-sm-offset-4
           = flash[:notice]
           = yield
