@@ -99,7 +99,7 @@ Rails.application.configure do
       password:              ENV['MAIL_SENDER_PASSWORD'],
       authentication:        'plain',
       enable_starttls_auto:  true }
-  config.action_mailer.default_url_options = { host: 'http://localhost', port: '3000' }
+  config.action_mailer.default_url_options = { host: 'https://desolate-beach-43675.herokuapp.com' }
 
   config.action_mailer.perform_deliveries = true
 end
