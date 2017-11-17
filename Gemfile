@@ -5,8 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+ruby '2.4.2'
+
 gem 'rails', '~> 5.1.4'
-gem 'sqlite3'
 gem 'puma', '~> 3.7'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
@@ -20,11 +21,16 @@ gem 'haml-rails', '~> 0.9'
 gem 'haml', '5.0.0.beta.2'
 gem 'dotenv-rails'
 gem 'google-api-client', require: 'google/apis/calendar_v3'
+gem 'pg'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+end
+
+group :production do
+  gem 'pg'
 end
 
 group :development do

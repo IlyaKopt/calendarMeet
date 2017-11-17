@@ -25,3 +25,4 @@
 /.ruby-gemset
 /.env
 .idea/
+/config/database.yml
