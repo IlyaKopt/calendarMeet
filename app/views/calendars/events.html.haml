@@ -1,5 +1,24 @@
 %ul
 - @event_list.items.each do |event|
-  %li
-    = event.summary
-    (#{event.id})
+  - if event.summary.present?
+    %li
+      %strong= 'Start date:'
+      #{event.start.date_time.strftime('%F %H:%M')}
+    %li
+      %strong= 'End date:'
+      #{event.end.date_time.strftime('%F %H:%M')}
+    %hr
+    %li
+      %strong= 'Event location is:'
+      #{event.location}
+    %li
+      %strong= 'People who are attendees:'
+    %ul
+      - event.attendees.each do |a|
+        %li
+          %strong= 'Name: '
+          #{a.display_name.present? ? a.display_name : a.email}
+        %li= a.email
+        %li
+          %strong= a.response_status
+        %hr

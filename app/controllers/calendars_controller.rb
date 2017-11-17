@@ -35,6 +35,12 @@ class CalendarsController < ApplicationController
     service.authorization = @client
 
     @event_list = service.list_events(params[:calendar_id])
+  rescue Google::Apis::AuthorizationError
+    response = @client.refresh!
+
+    session[:authorization] = session[:authorization].merge(response)
+
+    retry
   end
 
   private

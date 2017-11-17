@@ -1,5 +1,4 @@
 %ul
 - @calendar_list.items.each do |calendar|
   %li
-    = calendar.summary
-    (#{calendar.id})
+    = "#{calendar.summary} (#{calendar.id}) #{link_to 'Events List', events_path(calendar.id)}".html_safe
